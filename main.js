@@ -1,5 +1,6 @@
 let fired = false;
 let keyboard = document.getElementById("keyboard");
+let idx;
 let audioArray = [
   {
     key : "q",
@@ -66,11 +67,14 @@ document.addEventListener('keydown', (e) => {
 
 document.addEventListener('keyup', (e) => {
   fired = false;
+  keyboard.children[idx].style.background  = "#fff";
 });
 
 function soundEvent(keyName){
   const result = audioArray.filter(audio => audio.key == keyName);
   if(!result.length) { return; }
+  idx = audioArray.indexOf(result[0]);
+  keyboard.children[idx].style.background  = "yellow";
   let audio = new Audio(result[0].audio);
   audio.play();
 }
