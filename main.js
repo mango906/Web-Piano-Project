@@ -67,14 +67,14 @@ document.addEventListener('keydown', (e) => {
 
 document.addEventListener('keyup', (e) => {
   fired = false;
-  keyboard.children[idx].style.background  = "#fff";
+  keyboard.children[idx].style.transform = "translate(0px, 0px)"
 });
 
 function soundEvent(keyName){
   const result = audioArray.filter(audio => audio.key == keyName);
   if(!result.length) { return; }
   idx = audioArray.indexOf(result[0]);
-  keyboard.children[idx].style.background  = "yellow";
+  keyboard.children[idx].style.transform = "translate(0px, 20px)"
   let audio = new Audio(result[0].audio);
   audio.play();
 }
