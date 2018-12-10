@@ -1,69 +1,76 @@
 let fired = false;
+let keyboard = document.getElementById("keyboard");
+let audioArray = [
+  {
+    key : "q",
+    audio : "audio/C4.mp3"
+  },
+  {
+    key : "w",
+    audio : "audio/D4.mp3"
+  },
+  {
+    key : "e",
+    audio : "audio/E4.mp3"
+  },
+  {
+    key : "r",
+    audio : "audio/F4.mp3"
+  },
+  {
+    key : "t",
+    audio : "audio/G4.mp3"
+  },
+  {
+    key : "y",
+    audio : "audio/A4.mp3"
+  },
+  {
+    key : "u",
+    audio : "audio/B4.mp3"
+  },
+  {
+    key : "i",
+    audio : "audio/C5.mp3"
+  },
+  {
+    key : "o",
+    audio : "audio/D5.mp3"
+  },
+]
+
+keyboard.style.listStyleType = "none";
+
+audioArray.forEach(element => {
+  let key = document.createElement("li");
+  key.style.width = "100px";
+  key.style.height = "400px";
+  key.style.border = "1px solid #000";
+  key.style.display = "inline-block";
+  keyboard.append(key);
+  console.log(keyboard)
+});
+
+// audioArray.foreach(audio => {
+//   document.appendChild(keyboard);
+// });
+
+
 document.addEventListener('keydown', (e) => {
   if(!fired) {
     fired = true;
     const keyName = e.key;
-    switch(keyName){
-      case "q":
-        audio = new Audio("audio/C4.mp3");
-        audio.play();
-        break;
-      case "w":
-        audio = new Audio("audio/D4.mp3");
-        audio.play();
-        break;
-      case "e":
-        audio = new Audio("audio/E4.mp3");
-        audio.play();
-        break;
-      case "r":
-        audio = new Audio("audio/F4.mp3");
-        audio.play();
-        break;
-      case "t":
-        audio = new Audio("audio/G4.mp3");
-        audio.play();
-        break;
-      case "y":
-        audio = new Audio("audio/A4.mp3");
-        audio.play();
-        break;
-      case "u":
-        audio = new Audio("audio/B4.mp3");
-        audio.play();
-        break;
-      case "i":
-        audio = new Audio("audio/C5.mp3");
-        audio.play();  
-        break;
-      case "o":
-        audio = new Audio("audio/D5.mp3");
-        audio.play();
-        break;
-      case "2":
-        audio = new Audio("audio/Cs4.mp3");
-        audio.play();
-        break;
-      case "3":
-        audio = new Audio("audio/Ds4.mp3");
-        audio.play();
-        break;
-      case "5":
-        audio = new Audio("audio/Fs4.mp3");
-        audio.play();
-        break;  
-      case "6":
-        audio = new Audio("audio/Gs4.mp3");
-        audio.play();
-        break;
-      case "7":
-      audio = new Audio("audio/As4.mp3");
-      audio.play();
-      break;
-    } 
+    soundEvent(keyName);
   }
 });
 
 document.addEventListener('keyup', (e) => {
   fired = false;
 });
+
+function soundEvent(keyName){
+  const result = audioArray.filter(audio => audio.key == keyName);
+  if(!result.length) { return; }
+  let audio = new Audio(result[0].audio);
+  audio.play();
+}
