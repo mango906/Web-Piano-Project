@@ -2,3 +2,15 @@
   list-style-type: none;
   display: inline-block;
 }
+
+.keyboard-note {
+  display: inline-block;
+  width: 100px;
+  height: 400px;
+  box-shadow: 
+  2px 0 0 0 black,
+  0 2px 0 0 black,
+  2px 2px 0 0 black,
+  2px 0 0 0 black inset,
+  0 2px 0 0 black inset;
+}

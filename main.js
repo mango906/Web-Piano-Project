@@ -1,7 +1,7 @@
 let fired = false;
 let keyboard = document.getElementById("keyboard");
-let idx;
-let audioArray = [
+
+const audioArray = [
   {
     key : "q",
     audio : "audio/C4.mp3"
@@ -44,37 +44,43 @@ keyboard.style.listStyleType = "none";
 
 audioArray.forEach(element => {
   let key = document.createElement("li");
-  key.style.width = "100px";
-  key.style.height = "400px";
-  key.style.border = "1px solid #000";
-  key.style.display = "inline-block";
+  key.classList.add("keyboard-note");
   keyboard.append(key);
-  console.log(keyboard)
 });
 
-// audioArray.foreach(audio => {
-//   document.appendChild(keyboard);
-// });
-
-
-document.addEventListener('keydown', (e) => {
-  if(!fired) {
-    fired = true;
-    const keyName = e.key;
-    soundEvent(keyName);
+const selectAudioByKey = key => {
+  const result = audioArray.filter(element => element.key == key);
+  if (result.length == 0) {
+    return null;
+  } else {
+    return result;
   }
-});
+};
 
-document.addEventListener('keyup', (e) => {
-  fired = false;
-  keyboard.children[idx].style.background  = "#fff";
-});
+document.onkeydown = e => {
+  if (!fired) {
+    fired = true;
+    soundEvent(selectAudioByKey(e.key));
+  }
+};
 
-function soundEvent(keyName){
-  const result = audioArray.filter(audio => audio.key == keyName);
-  if(!result.length) { return; }
-  idx = audioArray.indexOf(result[0]);
-  keyboard.children[idx].style.background  = "yellow";
-  let audio = new Audio(result[0].audio);
+document.onkeyup = e => {
+  if (fired) {
+    fired = false;
+    soundEndEvent(selectAudioByKey(e.key));
+  }
+};
+
+const soundEvent = element => {
+  let idx = audioArray.indexOf(element[0]);
+  let audio = new Audio(element[0].audio);
+
+  keyboard.children[idx].style.background = "yellow";
   audio.play();
-}
+};
+
+const soundEndEvent = element => {
+  let idx = audioArray.indexOf(element[0]);
+  
+  keyboard.children[idx].style.background = "white";
+};
