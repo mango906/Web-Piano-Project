@@ -2,3 +2,23 @@
   list-style-type: none;
   display: inline-block;
 }
+
+
+.keyboard-key {
+  display: inline-block;
+  width: 100px;
+  height: 400px;
+  box-shadow: 
+  2px 0 0 0 black,
+  0 2px 0 0 black,
+  2px 2px 0 0 black,
+  2px 0 0 0 black inset,
+  0 2px 0 0 black inset;
+}
+
+.keyboard-sharp{
+  position: absolute;
+  background: #000;
+  width: 70px;
+  height: 270px;
+}

@@ -62,7 +62,7 @@ let audioArray = [
     type : "piano",
     key : "u",
     audio : "audio/B4.mp3"
-  },
+  }
   // {
   //   type : "piano",
   //   key : "i",
@@ -82,23 +82,17 @@ keyboard.style.listStyleType = "none";
 
 pianoArray.forEach(element => {
   let key = document.createElement("li");
-  key.style.width = "100px";
-  key.style.height = "400px";
-  key.style.border = "1px solid #000";
-  key.style.display = "inline-block";
+  key.classList.add("keyboard-key");
   keyboard.append(key);
 });
 
 sharpArray.forEach((element, i) =>{
   let sharp = document.createElement("li");
+  sharp.classList.add("keyboard-sharp");
   let ml = `${element.key-1}00` - 35;
-  sharp.style.position = "absolute";
-  sharp.style.width = "70px";
-  sharp.style.height = "270px";
-  sharp.style.background = "#000";
   sharp.style.marginLeft = `${ml}px`;
-  console.log(ml);
   keyboard.insertBefore(sharp, keyboard.childNodes[i]);
+  console.log(sharp);
 })
 
 // audioArray.foreach(audio => {
