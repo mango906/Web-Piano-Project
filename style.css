@@ -1,3 +1,7 @@
+*{
+  font-family: 'Roboto', sans-serif;
+}
+
 .keyboard{
   list-style-type: none;
   display: inline-block;
@@ -8,6 +12,9 @@
   display: inline-block;
   width: 100px;
   height: 400px;
+  line-height: 700px;
+  font-weight: bold;
+  text-align: center;
   box-shadow: 
   2px 0 0 0 black,
   0 2px 0 0 black,
@@ -21,4 +28,8 @@
   background: #000;
   width: 70px;
   height: 270px;
+  color: #fff;
+  text-align: center;
+  line-height: 470px;
+  z-index: 10;
 }

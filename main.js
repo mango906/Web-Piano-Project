@@ -119,9 +119,9 @@ let audioArray = [
     audio: "audio/A5.mp3"
   },
   {
-    type : "piano",
-    key : "\\",
-    audio : "audio/B5.mp3"
+    type: "piano",
+    key: "\\",
+    audio: "audio/B5.mp3"
   },
   // {
   //   type : "piano",
@@ -137,6 +137,7 @@ keyboard.style.listStyleType = "none";
 
 pianoArray.forEach(element => {
   let key = document.createElement("li");
+  key.innerHTML = element.key;
   key.classList.add("keyboard-key");
   keyboard.append(key);
 });
@@ -144,10 +145,11 @@ pianoArray.forEach(element => {
 sharpArray.forEach((element, i) => {
   let sharp = document.createElement("li");
   sharp.classList.add("keyboard-sharp");
+  sharp.innerHTML = element.key;
   if (i == 2 || i == 5 || i == 7) {
     sharpIdx++;
   }
-  let ml = `${i+1+sharpIdx}00` - 35;
+  let ml = `${i + 1 + sharpIdx}00` - 35;
   sharp.style.marginLeft = `${ml}px`;
   keyboard.insertBefore(sharp, keyboard.childNodes[i]);
 })
@@ -157,12 +159,12 @@ sharpArray.forEach((element, i) => {
 // });
 
 document.addEventListener('keydown', (e) => {
-  if(e.keyCode == 9 || e.keyCode == 8)    // keyCode 8 : Bakspace, keyCode 9 : Tab 
-      e.preventDefault();
+  if (e.keyCode == 9 || e.keyCode == 8)    // keyCode 8 : Bakspace, keyCode 9 : Tab 
+    e.preventDefault();
   if (!fired) {
-      fired = true;
-      soundEvent(e.key);
-    }
+    fired = true;
+    soundEvent(e.key);
+  }
 });
 
 document.addEventListener('keyup', (e) => {
