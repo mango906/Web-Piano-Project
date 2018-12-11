@@ -158,6 +158,30 @@ sharpArray.forEach((element, i) => {
 //   document.appendChild(keyboard);
 // });
 
+keyboard.addEventListener('mousedown', (e) =>{
+  let keyboarArray = Array.from(keyboard.children);
+  let idx;
+  keyboarArray.forEach((keyboard, i) =>{
+    if(keyboard == e.target){
+      idx = i;
+    }
+  });
+  e.preventDefault();
+  soundEvent(audioArray[idx].key);
+  // const result = keyboard.children.filter(audio => audio.key == e.key);
+  // console.log(result);
+});
+
+keyboard.addEventListener('mouseup', (e) =>{
+  fired = false;
+  keyboard.children[idx].style.transform = "translate(0px, 0px)"
+})
+
+keyboard.addEventListener('blur', (e) =>{
+  fired = false;
+  keyboard.children[idx].style.transform = "translate(0px, 0px)"
+})
+
 document.addEventListener('keydown', (e) => {
   if (e.keyCode == 9 || e.keyCode == 8)    // keyCode 8 : Bakspace, keyCode 9 : Tab 
     e.preventDefault();

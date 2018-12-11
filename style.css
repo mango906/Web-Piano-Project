@@ -6,7 +6,7 @@
   list-style-type: none;
   display: inline-block;
 }
-
+ 
 
 .keyboard-key {
   display: inline-block;
@@ -15,6 +15,7 @@
   line-height: 700px;
   font-weight: bold;
   text-align: center;
+  cursor: pointer;
   box-shadow: 
   2px 0 0 0 black,
   0 2px 0 0 black,
@@ -23,12 +24,17 @@
   0 2px 0 0 black inset;
 }
 
+.keyboard-key:hover{
+  background-color: #BDBDBD;
+}
+
 .keyboard-sharp{
   position: absolute;
   background: #000;
   width: 70px;
   height: 270px;
   color: #fff;
+  cursor: pointer;
   text-align: center;
   line-height: 470px;
   z-index: 10;
