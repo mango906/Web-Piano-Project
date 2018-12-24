@@ -33,27 +33,27 @@ let audioArray = [
   {
     type: "sharp",
     key: "8",
-    audio: "audio/Cs3.mp3"
+    audio: "audio/Cs4.mp3"
   },
   {
     type: "sharp",
     key: "9",
-    audio: "audio/Ds3.mp3"
+    audio: "audio/Ds4.mp3"
   },
   {
     type: "sharp",
     key: "-",
-    audio: "audio/Fs3.mp3"
+    audio: "audio/Fs4.mp3"
   },
   {
     type: "sharp",
     key: "=",
-    audio: "audio/Gs3.mp3"
+    audio: "audio/Gs4.mp3"
   },
   {
     type: "sharp",
-    key: "-",
-    audio: "audio/As3.mp3"
+    key: "Backspace",
+    audio: "audio/As4.mp3"
   },
   {
     type: "piano",
@@ -134,17 +134,20 @@ let audioArray = [
 const pianoArray = audioArray.filter(piano => piano.type === "piano");
 const sharpArray = audioArray.filter(piano => piano.type === "sharp");
 
-
-socket.emit('connection');
+document.addEventListener("DOMContentLoaded", () =>{
+  socket.emit("joined", localStorage.getItem("room"));
+});
 
 keyboard.style.listStyleType = "none";
 
  /*Socket Connect*/
 socket.on('keydown', (payload) =>{
+  console.log("keydown");
   soundEvent(payload);
 });
 
 socket.on('keyup', (payload) =>{
+  console.log("keyup");
   fired = false;
   const result = audioArray.filter(audio => audio.key == payload);
   if (result.length == 0) { return; }
@@ -204,7 +207,7 @@ document.addEventListener('keydown', (e) => {
   if (!fired) {
     fired = true;
     soundEvent(e.key);
-    socket.emit('keydown', e.key);
+    socket.emit('keydown', e.key, localStorage.getItem("room"));
   }
 });
 
@@ -213,7 +216,7 @@ document.addEventListener('keyup', (e) => {
   const result = audioArray.filter(audio => audio.key == e.key);
   if (result.length == 0) { return; }
   keyboard.children[idx].style.transform = "translate(0px, 0px)"
-  socket.emit("keyup", e.key);
+  socket.emit("keyup", e.key, localStorage.getItem("room"));
 });
 
 function soundEvent(keyName) {
