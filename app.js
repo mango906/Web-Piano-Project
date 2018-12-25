@@ -25,12 +25,12 @@ io.on('connection', (socket) =>{
   socket.on('keydown', (payload, roomName) =>{
     console.log("keydown", roomName);
     console.log(io.sockets.adapter.rooms);
-    socket.to(roomName).emit('keydown', payload);
+    socket.to(roomName).broadcast.emit('keydown', payload);
   });
 
   socket.on("keyup", (payload, roomName) =>{
     console.log("keydown", roomName);
-    socket.to(roomName).emit("keyup", payload);
+    socket.to(roomName).broadcast.emit("keyup", payload);
   });
 
   socket.on("createRoom", (roomName) =>{
