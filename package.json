@@ -4,7 +4,7 @@
   "description": "웹 기반 피아노 프로젝트",
   "main": "main.js",
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "socket.io": "^2.2.0",
     "socket.io-client": "^2.2.0",
     "supervisor": "^0.12.0"
